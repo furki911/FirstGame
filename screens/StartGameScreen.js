@@ -6,6 +6,7 @@ const StartGameScreen = () => {
   return (
     <View style={styles.inputContainer}>
       <TextInput
+        autoCorrect={false}
         keyboardType="number-pad"
         style={styles.numberInput}
         maxLength={2}
