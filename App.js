@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import GameScreen from "./screens/GameScreen";
+import Colors from "./constants/colors";
 
 const backgroundImageSrc = require("./assets/images/background.png");
 
@@ -20,7 +21,10 @@ export default function App() {
     screen = <GameScreen />;
   }
   return (
-    <LinearGradient colors={["#4e0329", "#ddb52f"]} style={styles.rootScreen}>
+    <LinearGradient
+      colors={[Colors.primary700, Colors.accent500]}
+      style={styles.rootScreen}
+    >
       <ImageBackground
         source={backgroundImageSrc}
         resizeMode="cover"
