@@ -16,7 +16,7 @@ const GameScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, padding: 52 },
+  screen: { flex: 1, padding: 24 },
 });
 
 export default GameScreen;
