@@ -3,7 +3,8 @@ import { StyleSheet } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import { useState } from "react";
 
-const StartGameScreen = () => {
+const StartGameScreen = (props) => {
+  const { onPickNumber } = props;
   const [enteredNumber, setEnteredNumber] = useState("");
 
   const numberInputHandler = (enteredText) => {
@@ -26,7 +27,7 @@ const StartGameScreen = () => {
       return;
     }
 
-    console.log("valid Number");
+    onPickNumber(enteredNumber);
   };
   return (
     <View style={styles.inputContainer}>
@@ -61,7 +62,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     elevation: 4,
     shadowColor: "black",
-    textShadowOffset: { width: 0, height: 2 },
+    textShadowOffset: {
+      width: 0,
+      height: 2,
+    },
     shadowRadius: 6,
     shadowOpacity: 0.25,
   },
