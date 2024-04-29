@@ -28,7 +28,7 @@ const StartGameScreen = (props) => {
       return;
     }
 
-    onPickNumber(enteredNumber);
+    onPickNumber(chosenNumber);
   };
   return (
     <View style={styles.inputContainer}>
