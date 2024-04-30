@@ -26,6 +26,11 @@ const GameScreen = (props) => {
   const initialGuess = generateRandomBetween(1, 100, userNumber);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
 
+  useEffect(() => {
+    minBoundary = 1;
+    maxBoundary = 100;
+  }, []);
+
   const nextGuessHandler = (direction) => {
     // Params: direction => 'lower' , 'greater'
     if (
