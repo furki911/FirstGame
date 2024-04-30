@@ -22,7 +22,6 @@ export default function App() {
   const [gameIsOver, setGameIsOver] = useState(false);
 
   const [fontsLoaded] = useFonts({
-    // returns Boolean to check if the fonts are already loaded
     "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
     "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
