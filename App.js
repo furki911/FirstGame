@@ -33,6 +33,7 @@ export default function App() {
 
   const pickedNumberHandler = (pickedNumber) => {
     setUserNumber(pickedNumber);
+    setGameIsOver(false);
   };
 
   const gameOverHandler = () => {
