@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import InstructionText from "../components/ui/InstructionText";
 import Card from "../components/ui/Card";
 import { Ionicons } from "@expo/vector-icons";
+import GuessLogItem from "../components/game/GuessLogItem";
 
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -69,6 +70,8 @@ const GameScreen = (props) => {
     }
   }, [currentGuess, userNumber, onGameOver]);
 
+  const guessRoundsListLength = guessRounds.length;
+
   return (
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
@@ -92,17 +95,14 @@ const GameScreen = (props) => {
         </View>
       </Card>
       <View>
-        {/* {guessRounds.map((el) => (
-          <Text key={el}>{el}</Text>
-        ))} */}
-
         <FlatList
           data={guessRounds}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <View>
-              <Text>{item.value}</Text>
-            </View>
+          renderItem={(itemData) => (
+            <GuessLogItem
+              roundNumber={guessRoundsListLength - itemData.index}
+              guess={itemData.item.value}
+            />
           )}
         />
       </View>
