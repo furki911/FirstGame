@@ -1,4 +1,11 @@
-import { Alert, FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  Alert,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from "react-native";
 import Title from "../components/ui/Title";
 import { useState } from "react";
 import NumberContainer from "../components/game/NumberContainer";
@@ -29,6 +36,7 @@ const GameScreen = (props) => {
   const [guessRounds, setGuessRounds] = useState([
     { id: initialGuess, value: initialGuess },
   ]);
+  const { width, height } = useWindowDimensions();
 
   useEffect(() => {
     minBoundary = 1;
@@ -72,9 +80,8 @@ const GameScreen = (props) => {
 
   const guessRoundsListLength = guessRounds.length;
 
-  return (
-    <View style={styles.screen}>
-      <Title>Opponent's Guess</Title>
+  let content = (
+    <>
       <NumberContainer>{currentGuess}</NumberContainer>
 
       <Card>
@@ -94,7 +101,41 @@ const GameScreen = (props) => {
           </View>
         </View>
       </Card>
-      <View style={styles.listContainer}>
+    </>
+  );
+
+  if (width > 500) {
+    content = (
+      <>
+        <View style={styles.buttonsContainerWide}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={nextGuessHandler.bind(this, "higher")}>
+              <Ionicons name="add-sharp" size={24} color="#fff" />
+            </PrimaryButton>
+          </View>
+
+          <NumberContainer>{currentGuess}</NumberContainer>
+
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
+              <Ionicons name="remove-sharp" size={24} color="#fff" />
+            </PrimaryButton>
+          </View>
+        </View>
+      </>
+    );
+  }
+
+  return (
+    <View style={styles.screen}>
+      <Title>Opponent's Guess</Title>
+      {content}
+      <View
+        style={[
+          styles.listContainer,
+          width > 500 ? { paddingVertical: 0 } : {},
+        ]}
+      >
         <FlatList
           data={guessRounds}
           keyExtractor={(item) => item.id}
@@ -124,6 +165,10 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
+  },
+  buttonsContainerWide: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   listContainer: {
     flex: 1,
