@@ -10,7 +10,7 @@ import {
 import { StyleSheet } from "react-native";
 import PrimaryButton from "../components/ui/PrimaryButton.js";
 import { useState } from "react";
-import Colors from "../constants/colors.js";
+import Colors from "../constants/colors";
 import Title from "../components/ui/Title";
 import Card from "../components/ui/Card.js";
 import InstructionText from "../components/ui/InstructionText.js";
